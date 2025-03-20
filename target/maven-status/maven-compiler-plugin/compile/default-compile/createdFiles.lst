@@ -1,0 +1,5 @@
+com/kafka/ProdMain.class
+com/kafka/Producteur.class
+com/kafka/Consommateur.class
+com/kafka/CustomPartitioner.class
+com/kafka/ConsMain.class
