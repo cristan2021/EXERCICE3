@@ -2,7 +2,7 @@ package com.kafka;
 
 public class ProdMain {
     public static void main(String[] args) {
-        int numProducteurs = 3;
+        int numProducteurs = 6;
 
         Thread[] threads = new Thread[numProducteurs];
 
