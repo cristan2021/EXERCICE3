@@ -4,14 +4,24 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.processor.WallclockTimestampExtractor;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.*;
 import org.apache.kafka.streams.processor.WallclockTimestampExtractor;
 import org.apache.kafka.streams.state.Materialized;
+import org.apache.kafka.streams.kstream.internals.KeyValueSerde;
+import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.window.TimeWindows;
+import org.apache.kafka.streams.kstream.Produced;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.lang.*;
 
 public class TraitementTemperature {
 
@@ -35,7 +45,7 @@ public class TraitementTemperature {
                 KStream<String, Double> fluxTempérature = flux.flatMap((cle, valeur) -> {
                         List<KeyValue<String, Double>> listeCléValeur = new ArrayList<>();
                         try {
-                                String[] parties = valeur.split(",");
+                                String[] parties = valeur.split("-");
                                 if (parties.length == 3) {
                                         String batiment = parties[0];
                                         String salle = parties[1];

@@ -27,13 +27,13 @@ public class Producteur implements Runnable {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.StringSerializer");
 
-        Producer<String, String> producteur = new KafkaProducer<>(props);
+        Producer<String, Double> producteur = new KafkaProducer<>(props);
         Random random = new Random();
 
         while (true) {
             for (String batiment : batimentS) {
                 for (String salle : salleS) {
-                    String message = "prod" + id + " " + batiment + "," + salle + ","
+                    String message = "prod" + id + " " + batiment + "-" + salle + "-"
                             + String.format("%.2f", 15 + (random.nextDouble() * 10));
 
                     try {
